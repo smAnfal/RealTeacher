@@ -1,195 +1,276 @@
 
 <!DOCTYPE html>
-<html lang="ml">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#f5f5ff">
-<title>Real Teacher</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#075c38">
+<title>Real Teacher | Learn Better</title>
 <style>
+:root{
+ --green:#087849;--deep:#06472d;--mint:#e8f6ed;
+ --white:#fff;--black:#101713;--grey:#718078;
+ --line:#e0eae3;--bg:#f5f9f6;
+}
 *{box-sizing:border-box}
-:root{--purple:#635bdf;--dark:#202344;--muted:#8588a1;--bg:#f6f6ff;--line:#e9e9f5}
-body{margin:0;background:var(--bg);color:var(--dark);font-family:"Noto Sans Malayalam","Nirmala UI",Arial,sans-serif}
-header{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:10px;padding:10px 16px;background:#ffffffed;backdrop-filter:blur(14px);border-bottom:1px solid #eeeef7}
-.logo{width:58px;height:58px;flex-shrink:0}
-.brand{font-size:22px;font-weight:900;letter-spacing:-1px}
-.brand span{color:#1470cf}
-.brand small{display:block;font-size:10px;letter-spacing:2px;color:#9293a8;font-weight:700}
-main{max-width:900px;margin:auto;padding:19px 14px 40px}
+body{margin:0;background:var(--bg);color:var(--black);
+font-family:Arial,"Noto Sans Malayalam","Nirmala UI",sans-serif}
+button{font:inherit}
+.hidden{display:none!important}
+
+/* INTRO */
+#intro{
+ position:fixed;inset:0;z-index:1000;display:flex;
+ align-items:center;justify-content:center;text-align:center;
+ background:radial-gradient(ellipse at 50% 35%,#116e46,#063a26 72%);
+ color:white;overflow:hidden;padding:25px;
+}
+.intro-content{width:100%;max-width:500px;animation:rise 1s ease}
+.intro-logo{width:100px;height:100px;margin-bottom:16px}
+.intro-kicker{font-size:10px;letter-spacing:5px;color:#bcebd0;font-weight:bold}
+.intro-title{font-size:clamp(42px,10vw,66px);font-weight:900;letter-spacing:-3px;margin:14px 0}
+.intro-title span{color:#a9efc5}
+.intro-line{width:65px;height:3px;background:#a9efc5;margin:22px auto;border-radius:9px}
+.creator{font-size:13px;letter-spacing:2px;color:#d5f2df}
+.creator-name{font-size:clamp(19px,5vw,27px);font-weight:bold;margin-top:12px}
+.creator-label{font-size:10px;color:#bcebd0;letter-spacing:3px;margin-top:9px}
+.progress-track{height:3px;background:#ffffff25;border-radius:9px;margin:35px auto 13px;max-width:240px;overflow:hidden}
+.progress{height:100%;width:0;background:#b4f0c9;animation:load 4s linear forwards}
+.countdown{font-size:12px;letter-spacing:2px;color:#d8f5e2}
+@keyframes load{to{width:100%}}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* APP */
+header{position:sticky;top:0;z-index:20;display:flex;align-items:center;
+ gap:12px;padding:12px 17px;background:#ffffffed;backdrop-filter:blur(15px);
+ border-bottom:1px solid var(--line)}
+.logo{width:49px;height:49px;flex-shrink:0}
+.brand{font-size:23px;font-weight:900;letter-spacing:-1px}
+.brand span{color:var(--green)}
+.brand small{display:block;font-size:9px;letter-spacing:2px;color:var(--grey);margin-top:4px}
+.status{margin-left:auto;font-size:9px;font-weight:bold;letter-spacing:1px;color:var(--green);background:var(--mint);padding:9px;border-radius:20px}
+main{max-width:920px;margin:auto;padding:20px 15px 45px}
 .screen{display:none;animation:appear .25s ease}
 .screen.active{display:block}
-@keyframes appear{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-.hero{position:relative;overflow:hidden;padding:27px 23px;border-radius:27px;color:white;background:linear-gradient(130deg,#20264d,#5448cb 65%,#847aff);box-shadow:0 14px 35px #5549ca25}
-.hero:after{content:"✦";position:absolute;right:13px;top:-30px;font-size:130px;color:#ffffff12}
-.eyebrow{font-size:10px;letter-spacing:1.6px;font-weight:900;color:#dedaff}
-.hero h1{position:relative;z-index:1;font-size:clamp(27px,6vw,39px);line-height:1.4;margin:13px 0}
-.hero p{position:relative;z-index:1;color:#e9e7ff;font-size:14px;line-height:1.9;margin:0}
-.pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
-.pills span{background:#ffffff19;border:1px solid #ffffff2c;border-radius:12px;padding:9px 10px;font-size:11px}
-.heading{display:flex;align-items:center;gap:12px;margin:25px 0 15px}
-.num{width:43px;height:43px;display:grid;place-items:center;border-radius:15px;background:#e9e6ff;color:var(--purple);font-size:19px;font-weight:900}
-.heading h2{font-size:20px;margin:0}
-.heading p{font-size:12px;color:var(--muted);margin:5px 0 0}
+@keyframes appear{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.hero{position:relative;overflow:hidden;color:white;padding:29px 23px;border-radius:26px;
+ background:linear-gradient(135deg,#063e28,#087849 65%,#31a66e);
+ box-shadow:0 15px 35px #075c3820}
+.hero:after{content:"✦";position:absolute;right:7px;top:-40px;font-size:150px;color:#ffffff10}
+.eyebrow{font-size:10px;font-weight:bold;letter-spacing:2px;color:#c7f0d6}
+.hero h1{position:relative;z-index:1;font-size:clamp(27px,6vw,40px);line-height:1.35;margin:16px 0}
+.hero p{position:relative;z-index:1;font-size:14px;line-height:1.9;color:#e0f5e7}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.chips span{border:1px solid #ffffff32;background:#ffffff12;padding:9px 11px;border-radius:12px;font-size:11px}
+.heading{display:flex;align-items:center;gap:12px;margin:28px 0 16px}
+.number{width:43px;height:43px;flex-shrink:0;display:grid;place-items:center;border-radius:14px;background:var(--mint);color:var(--green);font-weight:900}
+.heading h2{font-size:19px;margin:0}
+.heading p{font-size:12px;color:var(--grey);line-height:1.7;margin:5px 0 0}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
-.card{position:relative;background:white;border:1px solid var(--line);border-radius:21px;padding:19px;color:var(--dark);min-height:150px;box-shadow:0 5px 18px #25295006;text-align:left;font:inherit}
+.card{position:relative;background:white;border:1px solid var(--line);border-radius:21px;padding:18px;color:var(--black);min-height:145px;text-align:left;box-shadow:0 5px 18px #071e1008}
 button.card{cursor:pointer;transition:.2s}
-button.card:hover{transform:translateY(-3px);border-color:#c7c2ff;box-shadow:0 12px 25px #635bdf16}
-.emoji{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;font-size:26px;margin-bottom:14px}
-.card h3{font-size:17px;margin:0 0 8px}
-.card p{font-size:12px;line-height:1.8;color:var(--muted);margin:0}
-.arrow{position:absolute;right:16px;top:17px;color:var(--purple);font-size:19px}
-.purple{background:#efedff}.blue{background:#e8f2ff}.green{background:#e5f8ed}.orange{background:#fff0df}.pink{background:#ffebf1}.yellow{background:#fff6d9}
-.coming{background:#fbfbff;border-style:dashed}
-.badge{display:inline-block;margin-top:12px;padding:7px 9px;border-radius:8px;background:#efedff;color:#7770d4;font-size:9px;font-weight:900;letter-spacing:.6px}
-.back{border:0;border-radius:12px;padding:11px 15px;background:#eae8ff;color:#5045c7;font:inherit;font-size:13px;font-weight:800;cursor:pointer;margin-bottom:17px}
-.breadcrumb{float:right;color:var(--muted);font-size:11px;margin-top:9px}
-.banner{padding:23px;border-radius:23px;color:white;background:linear-gradient(120deg,#11795d,#36b58b)}
-.banner h1{font-size:27px;margin:10px 0}
-.banner p{font-size:13px;line-height:1.9;color:#e2fff3;margin:0}
+button.card:hover{transform:translateY(-3px);border-color:#79bd96;box-shadow:0 12px 26px #08784915}
+.emoji{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;font-size:25px;margin-bottom:14px}
+.green{background:#e3f6e9}.dark{background:#17221b;color:white}.greybg{background:#f0f4f1}
+.card h3{font-size:16px;margin:0 0 8px}
+.card p{font-size:12px;line-height:1.8;color:var(--grey);margin:0}
+.arrow{position:absolute;right:15px;top:15px;color:var(--green);font-size:19px}
+.coming{background:#fbfdfb;border-style:dashed}
+.badge{display:inline-block;margin-top:12px;background:#e5f5ea;color:#087849;border-radius:8px;padding:7px 9px;font-size:9px;font-weight:900;letter-spacing:.7px}
+.back{border:0;border-radius:11px;padding:11px 15px;background:#e3f4e9;color:#076b40;font-size:13px;font-weight:bold;cursor:pointer;margin-bottom:17px}
+.banner{padding:24px;border-radius:23px;color:white;background:linear-gradient(125deg,#063f29,#0c8551)}
+.banner h1{font-size:clamp(23px,5vw,31px);line-height:1.6;margin:12px 0}
+.banner p{font-size:13px;line-height:1.9;color:#e2f8e9}
+.unit{padding:21px;background:white;border:1px solid var(--line);border-radius:22px;margin-top:18px}
+.unit h2{font-size:22px;line-height:1.8;margin:10px 0}
+.unit p{font-size:13px;color:var(--grey);line-height:1.9}
+.unit-tag{font-size:10px;letter-spacing:1.5px;font-weight:bold;color:var(--green)}
 .days{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.day{width:100%;background:white;border:1px solid var(--line);border-radius:19px;padding:17px;text-align:left;color:var(--dark);font:inherit;cursor:pointer;transition:.2s}
-.day:hover{border-color:#a4dfc4;transform:translateY(-2px)}
-.daytop{font-size:10px;font-weight:900;color:#14855e;letter-spacing:1px}
-.day h3{font-size:16px;line-height:1.6;margin:10px 0 7px}
-.day p{font-size:12px;line-height:1.8;color:var(--muted);margin:0}
-.day .open{display:block;margin-top:13px;color:#16855f;font-size:12px;font-weight:900}
-#lesson{display:none;margin-top:19px}
+.day{padding:17px;background:white;border:1px solid var(--line);border-radius:19px;text-align:left;color:var(--black);cursor:pointer;transition:.2s}
+.day:hover{border-color:#6db58b;transform:translateY(-2px)}
+.day-label{font-size:10px;font-weight:900;letter-spacing:1.4px;color:var(--green)}
+.day h3{font-size:15px;line-height:1.7;margin:10px 0}
+.day p{font-size:12px;color:var(--grey);line-height:1.8;margin:0}
+.open{display:block;color:var(--green);font-size:12px;font-weight:bold;margin-top:13px}
+#lesson{display:none;margin-top:20px}
 #lesson.show{display:block}
-.lessonbox{background:white;border:1px solid var(--line);border-radius:22px;padding:21px;box-shadow:0 8px 25px #20234408}
-.lessonbox h2{font-size:23px;line-height:1.6;margin:10px 0}
-.lessonbox h3{font-size:17px;color:#5148c9;margin:22px 0 9px}
+.lessonbox{background:white;border:1px solid var(--line);border-radius:22px;padding:21px}
+.lessonbox h2{font-size:24px;line-height:1.7;margin:12px 0}
+.lessonbox h3{font-size:17px;margin-top:23px}
 .lessonbox p,.lessonbox li{font-size:14px;line-height:2}
 .lessonbox ul{padding-left:22px}
-.memory{background:#e9f9ef;border-left:4px solid #20a36c;padding:14px;border-radius:10px;font-size:13px;line-height:1.9;margin-top:18px}
-.quiz{background:#f2f0ff;border-radius:16px;padding:16px;margin-top:20px}
-.quiz button{width:100%;display:block;text-align:left;background:white;border:1px solid #dedbfa;border-radius:11px;padding:12px;margin-top:9px;font:inherit;font-size:13px;cursor:pointer}
-.feedback{font-size:13px;font-weight:800;margin-top:12px}
-.lesson-nav{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}
-footer{text-align:center;padding:24px 10px;color:var(--muted);font-size:11px}
-@media(max-width:440px){main{padding:14px 12px 30px}.hero{padding:23px 19px}.grid,.days{gap:10px}.card{padding:14px;min-height:150px}.card h3{font-size:15px}.emoji{width:43px;height:43px}.day{padding:13px}.day h3{font-size:14px}.brand{font-size:20px}.logo{width:51px;height:51px}}
-@media(max-width:340px){.grid,.days{grid-template-columns:1fr}}
+.memory{padding:15px;background:#e8f7ed;border-left:4px solid var(--green);border-radius:11px;font-size:13px;line-height:2;margin-top:18px}
+.quiz{padding:16px;background:#f1f7f2;border:1px solid var(--line);border-radius:16px;margin-top:22px}
+.quiz button{display:block;width:100%;padding:12px;margin-top:9px;background:white;border:1px solid var(--line);border-radius:11px;text-align:left;font-size:13px;cursor:pointer}
+.feedback{font-size:13px;font-weight:bold;line-height:1.8;margin-top:13px}
+.lesson-nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+footer{text-align:center;color:var(--grey);font-size:11px;padding:25px}
+@media(max-width:440px){main{padding:15px 12px 35px}.hero{padding:24px 19px}.grid,.days{gap:10px}.card,.day{padding:14px}.card h3{font-size:15px}.brand{font-size:21px}.logo{width:45px;height:45px}.status{font-size:8px;padding:8px}}
+@media(max-width:330px){.grid,.days{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
+<div id="intro">
+ <div class="intro-content">
+  <svg class="intro-logo" viewBox="0 0 100 100" aria-label="Real Teacher logo">
+   <circle cx="42" cy="29" r="20" fill="white" stroke="#111" stroke-width="4"/>
+   <path d="M22 23Q12 3 37 7Q55 -2 62 11Q62 20 49 23L29 22Z" fill="#111"/>
+   <rect x="22" y="23" width="39" height="17" rx="6" fill="none" stroke="#111" stroke-width="3"/>
+   <circle cx="33" cy="31" r="4" fill="#111"/><circle cx="50" cy="31" r="4" fill="#111"/>
+   <path d="M33 42Q42 49 51 41" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+   <path d="M42 50L42 78M42 55L17 67M42 55L73 40M42 78L25 96M42 78L56 96" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round"/>
+   <rect x="8" y="49" width="20" height="27" rx="3" fill="#087849" stroke="white" stroke-width="2" transform="rotate(-14 18 62)"/>
+   <path d="M73 29L78 25M80 35L87 34M75 21L77 16" stroke="#f3bb31" stroke-width="3" stroke-linecap="round"/>
+  </svg>
+  <div class="intro-kicker">WELCOME TO</div>
+  <div class="intro-title">Real <span>Teacher</span></div>
+  <div class="intro-line"></div>
+  <div class="creator">CREATED WITH PASSION BY</div>
+  <div class="creator-name">Sayyid Muhammed Anfal</div>
+  <div class="creator-label">FOUNDER &amp; CREATOR</div>
+  <div class="progress-track"><div class="progress"></div></div>
+  <div class="countdown" id="countdown">YOUR LEARNING JOURNEY STARTS IN 4</div>
+ </div>
+</div>
+
 <header>
-<!-- Embedded vector logo: no separate image file needed -->
-<svg class="logo" viewBox="0 0 100 100" role="img" aria-label="Real Teacher logo">
-<circle cx="40" cy="29" r="20" fill="#fff" stroke="#171717" stroke-width="4"/>
-<path d="M19 23 Q13 3 38 7 Q55 -2 61 10 Q62 21 50 23 L29 22Z" fill="#171717"/>
-<rect x="20" y="23" width="39" height="17" rx="6" fill="none" stroke="#171717" stroke-width="3"/>
-<circle cx="31" cy="31" r="4" fill="#171717"/><circle cx="48" cy="31" r="4" fill="#171717"/>
-<path d="M31 42 Q40 49 49 41" fill="none" stroke="#171717" stroke-width="3" stroke-linecap="round"/>
-<path d="M40 50 L40 78 M40 55 L17 67 M40 55 L69 39 M40 78 L24 96 M40 78 L54 96" fill="none" stroke="#171717" stroke-width="5" stroke-linecap="round"/>
-<rect x="8" y="49" width="20" height="27" rx="3" fill="#1470cf" stroke="#fff" stroke-width="2" transform="rotate(-14 18 62)"/>
-<path d="M63 42 L70 39" stroke="#171717" stroke-width="5" stroke-linecap="round"/>
-<path d="M72 29 L77 25 M78 35 L85 34 M73 21 L75 16" stroke="#f6ad16" stroke-width="3" stroke-linecap="round"/>
-</svg>
-<div class="brand">Real <span>Teacher</span><small>LEARN • GROW • SUCCEED</small></div>
+ <svg class="logo" viewBox="0 0 100 100" role="img" aria-label="Real Teacher">
+  <circle cx="42" cy="29" r="20" fill="white" stroke="#111" stroke-width="4"/>
+  <path d="M22 23Q12 3 37 7Q55 -2 62 11Q62 20 49 23L29 22Z" fill="#111"/>
+  <rect x="22" y="23" width="39" height="17" rx="6" fill="none" stroke="#111" stroke-width="3"/>
+  <circle cx="33" cy="31" r="4" fill="#111"/><circle cx="50" cy="31" r="4" fill="#111"/>
+  <path d="M33 42Q42 49 51 41" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+  <path d="M42 50L42 78M42 55L17 67M42 55L73 40M42 78L25 96M42 78L56 96" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round"/>
+  <rect x="8" y="49" width="20" height="27" rx="3" fill="#087849" stroke="white" stroke-width="2" transform="rotate(-14 18 62)"/>
+  <path d="M73 29L78 25M80 35L87 34M75 21L77 16" stroke="#f3bb31" stroke-width="3" stroke-linecap="round"/>
+ </svg>
+ <div class="brand">Real <span>Teacher</span><small>LEARN • GROW • SUCCEED</small></div>
+ <div class="status">● LEARN</div>
 </header>
 
 <main>
-
 <section id="home" class="screen active">
-<div class="hero">
-<div class="eyebrow">YOUR PERSONAL LEARNING SPACE</div>
-<h1>പഠിക്കാം എളുപ്പത്തിൽ! 🎓</h1>
-<p>ഓരോ ദിവസവും ചെറിയൊരു ചുവട്. ഓരോ പാഠവും പുതിയൊരു അറിവ്. നിങ്ങളുടെ പഠനയാത്ര ഇന്ന് തുടങ്ങാം.</p>
-<div class="pills"><span>📚 ലളിതമായ നോട്ട്സ്</span><span>🧠 ചെറിയ ക്വിസ്</span><span>🌟 ദിവസേന പഠനം</span></div>
-</div>
-<div class="heading"><div class="num">01</div><div><h2>സിലബസ് തിരഞ്ഞെടുക്കുക</h2><p>ആദ്യം നിങ്ങളുടെ പഠനപദ്ധതി തിരഞ്ഞെടുക്കൂ</p></div></div>
-<div class="grid">
-<button class="card" onclick="go('classes')"><div class="emoji purple">📘</div><span class="arrow">↗</span><h3>SCERT</h3><p>കേരള സംസ്ഥാന പാഠ്യപദ്ധതി</p></button>
-<div class="card coming"><div class="emoji blue">📚</div><h3>CBSE</h3><p>പഠനവിഭാഗം തയ്യാറാകുന്നു</p><span class="badge">COMING SOON</span></div>
-</div>
+ <div class="hero">
+  <div class="eyebrow">YOUR PERSONAL LEARNING SPACE</div>
+  <h1>Learn Better.<br>Grow Every Day.</h1>
+  <p>Simple lessons. Daily learning. A smarter way to study.</p>
+  <div class="chips"><span>📖 Easy Notes</span><span>🧠 Quick Quizzes</span><span>🌱 Daily Learning</span></div>
+ </div>
+ <div class="heading"><div class="number">01</div><div><h2>Select Your Syllabus</h2><p>Choose your curriculum to continue</p></div></div>
+ <div class="grid">
+  <button class="card" onclick="go('classes')"><div class="emoji green">📘</div><span class="arrow">↗</span><h3>SCERT</h3><p>Kerala State Curriculum</p><span class="badge">EXPLORE</span></button>
+  <div class="card coming"><div class="emoji dark">📚</div><h3>CBSE</h3><p>Curriculum coming soon</p><span class="badge">COMING SOON</span></div>
+ </div>
 </section>
 
 <section id="classes" class="screen">
-<button class="back" onclick="go('home')">← തിരികെ</button><span class="breadcrumb">SCERT / ക്ലാസ്</span>
-<div class="heading"><div class="num">02</div><div><h2>ക്ലാസ് തിരഞ്ഞെടുക്കുക</h2><p>നിങ്ങൾ പഠിക്കുന്ന ക്ലാസ് തിരഞ്ഞെടുക്കൂ</p></div></div>
-<div class="grid">
-<button class="card" onclick="go('medium')"><div class="emoji green">🎓</div><span class="arrow">↗</span><h3>ക്ലാസ് 9</h3><p>പഠനം ആരംഭിക്കാം</p></button>
-<div class="card coming"><div class="emoji orange">📗</div><h3>ക്ലാസ് 8</h3><span class="badge">COMING SOON</span></div>
-<div class="card coming"><div class="emoji pink">📕</div><h3>ക്ലാസ് 10</h3><span class="badge">COMING SOON</span></div>
-<div class="card coming"><div class="emoji yellow">📚</div><h3>മറ്റ് ക്ലാസുകൾ</h3><span class="badge">COMING SOON</span></div>
-</div>
+ <button class="back" onclick="go('home')">← Back</button>
+ <div class="heading"><div class="number">02</div><div><h2>Select Your Class</h2><p>Choose your current grade</p></div></div>
+ <div class="grid">
+  <button class="card" onclick="go('medium')"><div class="emoji green">🎓</div><span class="arrow">↗</span><h3>Class 9</h3><p>Start learning now</p><span class="badge">AVAILABLE</span></button>
+  <div class="card coming"><div class="emoji greybg">📗</div><h3>Class 8</h3><span class="badge">COMING SOON</span></div>
+  <div class="card coming"><div class="emoji greybg">📕</div><h3>Class 10</h3><span class="badge">COMING SOON</span></div>
+  <div class="card coming"><div class="emoji greybg">📚</div><h3>Other Classes</h3><span class="badge">COMING SOON</span></div>
+ </div>
 </section>
 
 <section id="medium" class="screen">
-<button class="back" onclick="go('classes')">← തിരികെ</button>
-<div class="heading"><div class="num">03</div><div><h2>മീഡിയം തിരഞ്ഞെടുക്കുക</h2><p>നിങ്ങൾക്ക് സൗകര്യമുള്ള പഠനമാധ്യമം തിരഞ്ഞെടുക്കൂ</p></div></div>
-<div class="grid">
-<button class="card" onclick="go('subjects')"><div class="emoji green">അ</div><span class="arrow">↗</span><h3>മലയാളം മീഡിയം</h3><p>പഠനക്കുറിപ്പുകൾ മലയാളത്തിൽ</p></button>
-<div class="card coming"><div class="emoji blue">A</div><h3>English Medium</h3><span class="badge">COMING SOON</span></div>
-</div>
+ <button class="back" onclick="go('classes')">← Back</button>
+ <div class="heading"><div class="number">03</div><div><h2>Select Your Medium</h2><p>Choose your preferred language</p></div></div>
+ <div class="grid">
+  <button class="card" onclick="go('subjects')"><div class="emoji green">അ</div><span class="arrow">↗</span><h3>Malayalam Medium</h3><p>Learn every lesson in Malayalam</p><span class="badge">AVAILABLE</span></button>
+  <div class="card coming"><div class="emoji dark">A</div><h3>English Medium</h3><span class="badge">COMING SOON</span></div>
+ </div>
 </section>
 
 <section id="subjects" class="screen">
-<button class="back" onclick="go('medium')">← തിരികെ</button>
-<div class="banner"><div class="eyebrow">SCERT • ക്ലാസ് 9</div><h1>നിങ്ങളുടെ പഠനലോകം 📚</h1><p>മലയാളം മീഡിയം · ഒരു വിഷയം തിരഞ്ഞെടുക്കൂ</p></div>
-<div class="heading"><div class="num">04</div><div><h2>വിഷയങ്ങൾ</h2><p>ലളിതമായി പഠിക്കാം, ഓർത്തുവയ്ക്കാം</p></div></div>
-<div class="grid">
-<button class="card" onclick="go('history')"><div class="emoji purple">🏺</div><span class="arrow">↗</span><h3>ചരിത്രം</h3><p>ശിലായുഗത്തിൽ നിന്ന് മുന്നോട്ട്</p></button>
-<div class="card coming"><div class="emoji green">🌏</div><h3>ഭൂമിശാസ്ത്രം</h3><span class="badge">ഉടൻ വരുന്നു</span></div>
-<div class="card coming"><div class="emoji orange">⚖️</div><h3>പൗരശാസ്ത്രം</h3><span class="badge">ഉടൻ വരുന്നു</span></div>
-<div class="card coming"><div class="emoji yellow">📊</div><h3>സാമ്പത്തികശാസ്ത്രം</h3><span class="badge">ഉടൻ വരുന്നു</span></div>
-<div class="card coming"><div class="emoji pink">🔢</div><h3>ഗണിതം</h3><span class="badge">ഉടൻ വരുന്നു</span></div>
-<div class="card coming"><div class="emoji blue">🔬</div><h3>ശാസ്ത്രം</h3><span class="badge">ഉടൻ വരുന്നു</span></div>
-</div>
+ <button class="back" onclick="go('medium')">← Back</button>
+ <div class="banner"><div class="eyebrow">SCERT • CLASS 9</div><h1>Choose Your Subject</h1><p>Malayalam Medium · Your learning starts here.</p></div>
+ <div class="heading"><div class="number">04</div><div><h2>Available Subjects</h2><p>Select a subject to explore lessons</p></div></div>
+ <div class="grid">
+  <button class="card" onclick="go('history')"><div class="emoji green">🏺</div><span class="arrow">↗</span><h3>HISTORY</h3><p>Explore the ancient world and human history.</p><span class="badge">UNIT 1 AVAILABLE</span></button>
+  <div class="card coming"><div class="emoji greybg">🌍</div><h3>GEOGRAPHY</h3><span class="badge">COMING SOON</span></div>
+  <div class="card coming"><div class="emoji greybg">⚗️</div><h3>CHEMISTRY</h3><span class="badge">COMING SOON</span></div>
+  <div class="card coming"><div class="emoji greybg">🔤</div><h3>ENGLISH</h3><span class="badge">COMING SOON</span></div>
+  <div class="card coming"><div class="emoji greybg">अ</div><h3>HINDI</h3><span class="badge">COMING SOON</span></div>
+  <div class="card coming"><div class="emoji greybg">അ</div><h3>MALAYALAM</h3><span class="badge">COMING SOON</span></div>
+  <div class="card coming"><div class="emoji greybg">＋</div><h3>OTHER SUBJECTS</h3><span class="badge">COMING SOON</span></div>
+ </div>
 </section>
 
 <section id="history" class="screen">
-<button class="back" onclick="go('subjects')">← വിഷയങ്ങളിലേക്ക്</button>
-<div class="banner"><div class="eyebrow">ചരിത്രം • യൂണിറ്റ് 1</div><h1>ശിലായുഗത്തിൽ നിന്ന് മുന്നോട്ട് 🏺</h1><p>ഒരു ദിവസം ഒരു പാഠഭാഗം. പഠിക്കുക, ഓർക്കുക, ക്വിസ് ചെയ്യുക.</p></div>
-<div class="heading"><div class="num">📅</div><div><h2>ദിവസങ്ങൾ തിരഞ്ഞെടുക്കുക</h2><p>പഠിക്കാൻ ഒരു ദിവസം അമർത്തൂ. നോട്ട്സ് അതിനുശേഷം മാത്രം കാണിക്കും.</p></div></div>
-<div class="days" id="dayList"></div>
-<div id="lesson"></div>
+ <button class="back" onclick="go('subjects')">← Subjects</button>
+ <div class="banner"><div class="eyebrow">SCERT • CLASS 9 • HISTORY</div><h1>History Learning Space</h1><p>Learn one day at a time. Open a day to read notes and take a quiz.</p></div>
+ <div class="unit"><div class="unit-tag">UNIT 01</div><h2>ശിലായുഗത്തിൽ നിന്നും മുന്നോട്ട്</h2><p>ഈ യൂണിറ്റിലെ പഠനഭാഗങ്ങൾ ദിവസങ്ങളായി ക്രമീകരിച്ചിരിക്കുന്നു.</p></div>
+ <div class="heading"><div class="number">📅</div><div><h2>Choose Your Study Day</h2><p>Your notes will appear only after you select a day.</p></div></div>
+ <div class="days" id="dayList"></div>
+ <div id="lesson"></div>
 </section>
-
 </main>
-<footer>© 2026 Real Teacher · അറിവിലൂടെ മുന്നോട്ട് ✨</footer>
+
+<footer>REAL TEACHER<br><br>Created by Sayyid Muhammed Anfal</footer>
 
 <script>
+/* Four-second introduction */
+let seconds=4;
+const counter=document.getElementById('countdown');
+const intro=document.getElementById('intro');
+counter.textContent='YOUR LEARNING JOURNEY STARTS IN '+seconds;
+const timer=setInterval(()=>{
+ seconds--;
+ if(seconds>0){
+  counter.textContent='YOUR LEARNING JOURNEY STARTS IN '+seconds;
+ }else{
+  clearInterval(timer);
+  intro.style.opacity='0';
+  intro.style.transition='opacity .5s ease';
+  setTimeout(()=>intro.remove(),500);
+ }
+},1000);
+
 function go(id){
  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
  document.getElementById(id).classList.add('active');
  window.scrollTo({top:0,behavior:'smooth'});
 }
-const data=[
-{title:"പ്രാചീന ശിലായുഗം",intro:"ആദ്യകാല മനുഷ്യർ പ്രകൃതിയിൽ ലഭിച്ച വിഭവങ്ങളെ ആശ്രയിച്ചാണ് ജീവിച്ചിരുന്നത്.",points:["പരുക്കൻ കല്ലുപകരണങ്ങൾ നിർമ്മിച്ച് ഉപയോഗിച്ചു.","വേട്ടയാടലും പഴങ്ങൾ, കിഴങ്ങുകൾ തുടങ്ങിയവ ശേഖരിക്കലും പ്രധാനമായിരുന്നു.","ഗുഹകളും പാറയിടുക്കുകളും അഭയകേന്ദ്രങ്ങളായി ഉപയോഗിച്ചു.","ഭക്ഷണം തേടി ഒരിടത്തുനിന്ന് മറ്റൊരിടത്തേക്ക് സഞ്ചരിച്ചു."],remember:"പരുക്കൻ കല്ലുപകരണങ്ങൾ • വേട്ടയാടൽ • ഭക്ഷ്യശേഖരണം",q:"പ്രാചീന ശിലായുഗത്തിലെ പ്രധാന ഉപജീവനമാർഗം ഏത്?",a:["കൃഷിയും വ്യാപാരവും","വേട്ടയാടലും ഭക്ഷ്യശേഖരണവും","ഫാക്ടറി ജോലി"],correct:1},
-{title:"മധ്യശിലായുഗം",intro:"പ്രാചീന ശിലായുഗത്തിനും നവീനശിലായുഗത്തിനും ഇടയിലുള്ള ഘട്ടമാണ് മധ്യശിലായുഗം.",points:["ചെറുതും മൂർച്ചയുള്ളതുമായ കല്ലുപകരണങ്ങൾ ഉപയോഗിച്ചു.","സൂക്ഷ്മശിലായുധങ്ങൾ പ്രധാന സവിശേഷതയായിരുന്നു.","വേട്ടയാടലും ഭക്ഷ്യശേഖരണവും തുടർന്നു.","ചില പ്രദേശങ്ങളിൽ മത്സ്യബന്ധനത്തിനും പ്രാധാന്യം ലഭിച്ചു."],remember:"മധ്യശിലായുഗം = സൂക്ഷ്മശിലായുധങ്ങൾ",q:"മധ്യശിലായുഗത്തിന്റെ പ്രധാന സവിശേഷത ഏത്?",a:["സൂക്ഷ്മശിലായുധങ്ങൾ","ഇരുമ്പുപകരണങ്ങൾ","വലിയ യന്ത്രങ്ങൾ"],correct:0},
-{title:"നവീനശിലായുഗം",intro:"മനുഷ്യർ കൃഷി ചെയ്യാനും ചില മൃഗങ്ങളെ ഇണക്കിവളർത്താനും തുടങ്ങിയ കാലഘട്ടമാണ് നവീനശിലായുഗം.",points:["മിനുക്കിയ കല്ലുപകരണങ്ങൾ ഉപയോഗിച്ചു.","കൃഷിയും മൃഗസംരക്ഷണവും വളർന്നു.","ചില സമൂഹങ്ങൾ സ്ഥിരവാസം ആരംഭിച്ചു.","മൺപാത്രനിർമാണം പോലുള്ള പ്രവർത്തനങ്ങൾ വികസിച്ചു."],remember:"കൃഷി • മൃഗസംരക്ഷണം • സ്ഥിരവാസം",q:"നവീനശിലായുഗത്തിലെ പ്രധാന മാറ്റം ഏത്?",a:["കൃഷിയുടെ വളർച്ച","കമ്പ്യൂട്ടറുകളുടെ ഉപയോഗം","ആവിയന്ത്രം"],correct:0},
-{title:"നവീനശിലായുഗ വിപ്ലവം",intro:"ഭക്ഷണം ശേഖരിച്ച് ജീവിച്ചിരുന്ന രീതിയിൽ നിന്ന് ഭക്ഷണം ഉൽപാദിപ്പിക്കുന്ന ജീവിതരീതിയിലേക്കുള്ള മാറ്റം നിർണായകമായിരുന്നു.",points:["കൃഷിയിലൂടെ മനുഷ്യർ ഭക്ഷണം ഉൽപാദിപ്പിക്കാൻ തുടങ്ങി.","മൃഗങ്ങളെ ഇണക്കിവളർത്തുന്നത് വളർന്നു.","സ്ഥിരവാസം ഗ്രാമങ്ങളുടെ വളർച്ചയ്ക്ക് വഴിയൊരുക്കി.","തൊഴിൽവിഭജനവും സമൂഹജീവിതവും മാറി."],remember:"ഭക്ഷ്യശേഖരണം → ഭക്ഷ്യോൽപാദനം",q:"നവീനശിലായുഗ വിപ്ലവത്തിന്റെ കേന്ദ്രമാറ്റം എന്താണ്?",a:["കൃഷി ഉപേക്ഷിക്കൽ","ഭക്ഷ്യശേഖരണത്തിൽ നിന്ന് ഭക്ഷ്യോൽപാദനത്തിലേക്ക് മാറൽ","കമ്പ്യൂട്ടർ ഉപയോഗം"],correct:1},
-{title:"ലോഹയുഗം",intro:"കല്ലിനൊപ്പം ലോഹങ്ങളും ഉപകരണങ്ങൾ നിർമ്മിക്കാൻ ഉപയോഗിച്ചുതുടങ്ങിയപ്പോൾ മനുഷ്യജീവിതത്തിൽ മാറ്റങ്ങൾ ഉണ്ടായി.",points:["ചെമ്പ് ഉപയോഗിച്ച കാലഘട്ടത്തെ ചെമ്പുയുഗം എന്ന് വിളിക്കുന്നു.","ചെമ്പും തകരവും ചേർത്തുണ്ടാക്കുന്ന ലോഹസങ്കരമാണ് വെങ്കലം.","ഇരുമ്പുപകരണങ്ങൾ കൃഷിക്കും മറ്റു ജോലികൾക്കും സഹായകമായി.","ലോഹങ്ങളുടെ ഉപയോഗം ഉൽപാദനത്തെയും വ്യാപാരത്തെയും സ്വാധീനിച്ചു."],remember:"ചെമ്പ് • വെങ്കലം • ഇരുമ്പ്",q:"ചെമ്പും തകരവും ചേർന്നുണ്ടാകുന്ന ലോഹസങ്കരം ഏത്?",a:["വെങ്കലം","വെള്ളി","സ്വർണം"],correct:0},
-{title:"വെങ്കലയുഗ സംസ്കാരങ്ങൾ",intro:"കൃഷിയും മിച്ചോൽപാദനവും വ്യാപാരവും ചില പ്രദേശങ്ങളിൽ നഗരസംസ്കാരങ്ങളുടെ വളർച്ചയ്ക്ക് സഹായിച്ചു.",points:["നഗരങ്ങളും തൊഴിൽവിഭജനവും വളർന്നു.","മിച്ചോൽപാദനം കൈമാറ്റത്തിനും വ്യാപാരത്തിനും സഹായിച്ചു.","മെസൊപ്പൊട്ടേമിയ, ഈജിപ്ത്, സിന്ധുനദീതടം എന്നിവിടങ്ങളിൽ പുരാതന സംസ്കാരങ്ങൾ വളർന്നു.","ലിപിയും ഭരണസംവിധാനങ്ങളും ചില സംസ്കാരങ്ങളിൽ വികസിച്ചു."],remember:"കൃഷി • മിച്ചോൽപാദനം • വ്യാപാരം • നഗരങ്ങൾ",q:"നഗരസംസ്കാരങ്ങളുടെ വളർച്ചയ്ക്ക് സഹായിച്ച ഘടകം ഏത്?",a:["വ്യാപാരവും മിച്ചോൽപാദനവും","കൃഷിയില്ലായ്മ","സഞ്ചാരം മാത്രം"],correct:0},
-{title:"ആവർത്തനം & ക്വിസ്",intro:"പഠിച്ച ആശയങ്ങൾ ആവർത്തിച്ച് സ്വയംപരിശോധന നടത്താം.",points:["പ്രാചീന ശിലായുഗം — വേട്ടയാടലും ഭക്ഷ്യശേഖരണവും.","മധ്യശിലായുഗം — സൂക്ഷ്മശിലായുധങ്ങൾ.","നവീനശിലായുഗം — കൃഷിയും സ്ഥിരവാസവും.","ലോഹയുഗം — ചെമ്പ്, വെങ്കലം, ഇരുമ്പ്."],remember:"വായിക്കുക → പുസ്തകം അടച്ച് ഓർത്തുപറയുക → ക്വിസ് ചെയ്യുക",q:"സൂക്ഷ്മശിലായുധങ്ങൾ ഏത് കാലഘട്ടവുമായി ബന്ധപ്പെട്ടിരിക്കുന്നു?",a:["മധ്യശിലായുഗം","ആധുനിക കാലം","ഇരുമ്പുയുഗം മാത്രം"],correct:0}
+
+const lessons=[
+{title:"പ്രാചീന ശിലായുഗം",intro:"ആദ്യകാല മനുഷ്യർ പ്രകൃതിയിൽ ലഭിച്ച വിഭവങ്ങളെ ആശ്രയിച്ചാണ് ജീവിച്ചിരുന്നത്.",points:["പരുക്കൻ കല്ലുപകരണങ്ങൾ ഉപയോഗിച്ചു.","വേട്ടയാടലും ഭക്ഷ്യശേഖരണവും പ്രധാനമായിരുന്നു.","ഗുഹകളും പാറയിടുക്കുകളും അഭയകേന്ദ്രങ്ങളായി ഉപയോഗിച്ചു.","ഭക്ഷണം തേടി ഒരിടത്തുനിന്ന് മറ്റൊരിടത്തേക്ക് സഞ്ചരിച്ചു."],memory:"കല്ലുപകരണങ്ങൾ • വേട്ടയാടൽ • ഭക്ഷ്യശേഖരണം",q:"പ്രാചീന ശിലായുഗത്തിലെ പ്രധാന ഉപജീവനമാർഗം ഏത്?",a:["കൃഷിയും വ്യാപാരവും","വേട്ടയാടലും ഭക്ഷ്യശേഖരണവും","ഫാക്ടറി ജോലി"],c:1},
+{title:"മധ്യശിലായുഗം",intro:"പ്രാചീന ശിലായുഗത്തിനും നവീനശിലായുഗത്തിനും ഇടയിലുള്ള ഘട്ടമാണ് മധ്യശിലായുഗം.",points:["ചെറുതും മൂർച്ചയുള്ളതുമായ കല്ലുപകരണങ്ങൾ ഉപയോഗിച്ചു.","സൂക്ഷ്മശിലായുധങ്ങൾ പ്രധാന സവിശേഷതയായിരുന്നു.","വേട്ടയാടലും ഭക്ഷ്യശേഖരണവും തുടർന്നു.","ചില പ്രദേശങ്ങളിൽ മത്സ്യബന്ധനത്തിനും പ്രാധാന്യം ലഭിച്ചു."],memory:"മധ്യശിലായുഗം = സൂക്ഷ്മശിലായുധങ്ങൾ",q:"മധ്യശിലായുഗത്തിന്റെ പ്രധാന സവിശേഷത ഏത്?",a:["ഇരുമ്പുപകരണങ്ങൾ","സൂക്ഷ്മശിലായുധങ്ങൾ","വലിയ യന്ത്രങ്ങൾ"],c:1},
+{title:"നവീനശിലായുഗം",intro:"മനുഷ്യർ കൃഷി ചെയ്യാനും മൃഗങ്ങളെ ഇണക്കിവളർത്താനും തുടങ്ങിയ കാലഘട്ടമാണ് നവീനശിലായുഗം.",points:["മിനുക്കിയ കല്ലുപകരണങ്ങൾ ഉപയോഗിച്ചു.","കൃഷിയും മൃഗസംരക്ഷണവും വളർന്നു.","ചില സമൂഹങ്ങൾ സ്ഥിരവാസം ആരംഭിച്ചു.","മൺപാത്രനിർമാണം പോലുള്ള പ്രവർത്തനങ്ങൾ വികസിച്ചു."],memory:"കൃഷി • മൃഗസംരക്ഷണം • സ്ഥിരവാസം",q:"നവീനശിലായുഗത്തിലെ പ്രധാന മാറ്റം ഏത്?",a:["കമ്പ്യൂട്ടറുകളുടെ ഉപയോഗം","ആവിയന്ത്രം","കൃഷിയുടെ വളർച്ച"],c:2},
+{title:"ജീവിതരീതിയിലെ മാറ്റങ്ങൾ",intro:"ഭക്ഷണം ശേഖരിക്കുന്ന ജീവിതത്തിൽ നിന്ന് ഭക്ഷണം ഉൽപാദിപ്പിക്കുന്ന ജീവിതത്തിലേക്കുള്ള മാറ്റം മനുഷ്യചരിത്രത്തിലെ പ്രധാന ഘട്ടമാണ്.",points:["കൃഷിയിലൂടെ ഭക്ഷണം ഉൽപാദിപ്പിച്ചു.","മൃഗങ്ങളെ ഇണക്കിവളർത്തുന്നത് വളർന്നു.","സ്ഥിരവാസം ഗ്രാമങ്ങളുടെ വളർച്ചയ്ക്ക് സഹായിച്ചു.","തൊഴിൽവിഭജനവും സമൂഹജീവിതവും മാറി."],memory:"ഭക്ഷ്യശേഖരണം → ഭക്ഷ്യോൽപാദനം",q:"ഭക്ഷ്യോൽപാദനത്തിന് പ്രധാനമായും സഹായിച്ചത് എന്ത്?",a:["കൃഷി","വേട്ട മാത്രം","സഞ്ചാരം മാത്രം"],c:0},
+{title:"ലോഹങ്ങളുടെ ഉപയോഗം",intro:"കല്ലിനൊപ്പം ലോഹങ്ങളും ഉപകരണങ്ങൾ നിർമ്മിക്കാൻ ഉപയോഗിച്ചുതുടങ്ങിയപ്പോൾ മനുഷ്യജീവിതത്തിൽ മാറ്റങ്ങളുണ്ടായി.",points:["ചെമ്പ് ഉപയോഗിച്ച കാലഘട്ടത്തിന് ചെമ്പുയുഗം എന്ന് പറയുന്നു.","ചെമ്പും തകരവും ചേർത്തുണ്ടാക്കുന്ന ലോഹസങ്കരമാണ് വെങ്കലം.","ഇരുമ്പുപകരണങ്ങൾ വിവിധ ജോലികൾക്ക് സഹായകമായി.","ലോഹങ്ങളുടെ ഉപയോഗം ഉൽപാദനത്തെയും വ്യാപാരത്തെയും സ്വാധീനിച്ചു."],memory:"ചെമ്പ് • വെങ്കലം • ഇരുമ്പ്",q:"ചെമ്പും തകരവും ചേർന്നുണ്ടാകുന്ന ലോഹസങ്കരം ഏത്?",a:["വെള്ളി","വെങ്കലം","സ്വർണം"],c:1},
+{title:"പുരാതന സംസ്കാരങ്ങൾ",intro:"കൃഷിയും മിച്ചോൽപാദനവും വ്യാപാരവും ചില പ്രദേശങ്ങളിൽ നഗരസംസ്കാരങ്ങളുടെ വളർച്ചയ്ക്ക് സഹായിച്ചു.",points:["നഗരങ്ങളും തൊഴിൽവിഭജനവും വളർന്നു.","മിച്ചോൽപാദനം വ്യാപാരത്തിന് സഹായിച്ചു.","മെസൊപ്പൊട്ടേമിയ, ഈജിപ്ത്, സിന്ധുനദീതടം എന്നിവിടങ്ങളിൽ പുരാതന സംസ്കാരങ്ങൾ വളർന്നു.","ചില സംസ്കാരങ്ങളിൽ ലിപിയും ഭരണസംവിധാനങ്ങളും വികസിച്ചു."],memory:"കൃഷി • മിച്ചോൽപാദനം • വ്യാപാരം • നഗരങ്ങൾ",q:"നഗരസംസ്കാരങ്ങളുടെ വളർച്ചയ്ക്ക് സഹായിച്ച ഘടകം ഏത്?",a:["കൃഷിയില്ലായ്മ","സഞ്ചാരം മാത്രം","വ്യാപാരവും മിച്ചോൽപാദനവും"],c:2},
+{title:"ആവർത്തനവും സ്വയംപരിശോധനയും",intro:"പഠിച്ച ആശയങ്ങൾ ആവർത്തിച്ച് സ്വയംപരിശോധന നടത്താം.",points:["പ്രാചീന ശിലായുഗം — വേട്ടയാടലും ഭക്ഷ്യശേഖരണവും.","മധ്യശിലായുഗം — സൂക്ഷ്മശിലായുധങ്ങൾ.","നവീനശിലായുഗം — കൃഷിയും സ്ഥിരവാസവും.","ലോഹയുഗം — ചെമ്പ്, വെങ്കലം, ഇരുമ്പ്."],memory:"വായിക്കുക → പുസ്തകം അടച്ച് ഓർക്കുക → ക്വിസ് ചെയ്യുക",q:"സൂക്ഷ്മശിലായുധങ്ങൾ ഏത് കാലഘട്ടവുമായി ബന്ധപ്പെട്ടിരിക്കുന്നു?",a:["മധ്യശിലായുഗം","ആധുനിക കാലം","ഇരുമ്പുയുഗം മാത്രം"],c:0}
 ];
-const dayList=document.getElementById('dayList');
-data.forEach((d,i)=>{
+
+const list=document.getElementById('dayList');
+const icons=["🪨","🏹","🌾","🏡","⚒️","🏛️","📝"];
+const desc=["ആദ്യകാല മനുഷ്യരുടെ ജീവിതം","സൂക്ഷ്മശിലായുധങ്ങളുടെ കാലം","കൃഷിയുടെയും സ്ഥിരവാസത്തിന്റെയും തുടക്കം","ജീവിതരീതിയിലെ മാറ്റങ്ങൾ","ലോഹങ്ങളുടെ ഉപയോഗം","പുരാതന സംസ്കാരങ്ങൾ","പ്രധാന ആശയങ്ങളുടെ ആവർത്തനം"];
+lessons.forEach((l,i)=>{
  const b=document.createElement('button');
  b.className='day';
- b.innerHTML='<div class="daytop">DAY '+String(i+1).padStart(2,'0')+'</div><h3>'+['🪨 ','🏹 ','🌾 ','🏡 ','⚒️ ','🏛️ ','📝 '][i]+d.title+'</h3><p>'+['ആദ്യകാല മനുഷ്യരുടെ ജീവിതം','സൂക്ഷ്മശിലായുധങ്ങളുടെ കാലം','കൃഷിയുടെ തുടക്കം','ജീവിതരീതിയിലെ വലിയ മാറ്റം','ലോഹങ്ങളുടെ ഉപയോഗം','പുരാതന നഗരസംസ്കാരങ്ങൾ','പ്രധാന ആശയങ്ങളുടെ ആവർത്തനം'][i]+'</p><span class="open">പഠനം തുറക്കാം →</span>';
+ b.innerHTML='<div class="day-label">DAY '+String(i+1).padStart(2,'0')+'</div><h3>'+icons[i]+' '+l.title+'</h3><p>'+desc[i]+'</p><span class="open">പഠനം തുറക്കാം →</span>';
  b.onclick=()=>openDay(i);
- dayList.appendChild(b);
+ list.appendChild(b);
 });
+
 function openDay(i){
- const d=data[i],el=document.getElementById('lesson');
+ const l=lessons[i],el=document.getElementById('lesson');
  el.className='show';
- el.innerHTML='<div class="lessonbox"><div class="daytop">DAY '+String(i+1).padStart(2,'0')+' · പഠനക്കുറിപ്പുകൾ</div><h2>'+d.title+'</h2><p>'+d.intro+'</p><h3>⭐ പ്രധാന പോയിന്റുകൾ</h3><ul>'+d.points.map(p=>'<li>'+p+'</li>').join('')+'</ul><div class="memory"><b>💡 എളുപ്പത്തിൽ ഓർക്കാം</b><br>'+d.remember+'</div><div class="quiz"><b>🧠 ചെറിയ ക്വിസ്</b><p>'+d.q+'</p>'+d.a.map((a,j)=>'<button onclick="answer(this,'+j+','+d.correct+')">'+['എ','ബി','സി'][j]+'. '+a+'</button>').join('')+'<div class="feedback" aria-live="polite"></div></div><div class="lesson-nav"><button class="back" onclick="openDay('+(i===0?data.length-1:i-1)+')">← കഴിഞ്ഞ ദിവസം</button><button class="back" onclick="openDay('+(i===data.length-1?0:i+1)+')">അടുത്ത ദിവസം →</button><button class="back" onclick="closeLesson()">നോട്ട്സിൽ നിന്ന് മടങ്ങുക</button></div></div>';
+ el.innerHTML='<article class="lessonbox"><div class="day-label">DAY '+String(i+1).padStart(2,'0')+' · STUDY NOTES</div><h2>'+l.title+'</h2><p>'+l.intro+'</p><h3>പ്രധാന പോയിന്റുകൾ</h3><ul>'+l.points.map(p=>'<li>'+p+'</li>').join('')+'</ul><div class="memory"><b>💡 ഓർമിക്കാൻ</b><br>'+l.memory+'</div><div class="quiz"><b>🧠 ചെറിയ ക്വിസ്</b><p>'+l.q+'</p>'+l.a.map((a,j)=>'<button onclick="answer(this,'+j+','+l.c+')">'+['എ','ബി','സി'][j]+'. '+a+'</button>').join('')+'<div class="feedback" aria-live="polite"></div></div><div class="lesson-nav"><button class="back" onclick="openDay('+Math.max(0,i-1)+')">← കഴിഞ്ഞ ദിവസം</button><button class="back" onclick="openDay('+Math.min(lessons.length-1,i+1)+')">അടുത്ത ദിവസം →</button><button class="back" onclick="closeLesson()">ദിവസങ്ങളിലേക്ക് മടങ്ങുക</button></div></article>';
  el.scrollIntoView({behavior:'smooth',block:'start'});
 }
-function answer(btn,n,correct){
- const parent=btn.parentElement;
- parent.querySelectorAll('button').forEach(b=>b.style.borderColor='#dedbfa');
- const f=parent.querySelector('.feedback');
- if(n===correct){btn.style.borderColor='#22a66b';f.style.color='#168052';f.textContent='ശരിയുത്തരം! 🎉 വളരെ നന്നായി!'}
- else{btn.style.borderColor='#e58a8a';f.style.color='#b84a4a';f.textContent='വീണ്ടും ശ്രമിക്കൂ. നോട്ട്സ് ഒന്ന് കൂടി വായിക്കൂ.'}
+function answer(btn,n,c){
+ const p=btn.parentElement,f=p.querySelector('.feedback');
+ if(n===c){f.style.color='#087849';f.textContent='ശരിയുത്തരം! വളരെ നന്നായി! 🎉';btn.style.borderColor='#087849'}
+ else{f.style.color='#a52a2a';f.textContent='വീണ്ടും ശ്രമിക്കൂ. നോട്ട്സ് ഒന്ന് കൂടി വായിക്കൂ.';btn.style.borderColor='#d66'}
 }
 function closeLesson(){
  const el=document.getElementById('lesson');
- el.className='';
- el.innerHTML='';
- document.getElementById('dayList').scrollIntoView({behavior:'smooth',block:'start'});
+ el.className='';el.innerHTML='';
+ list.scrollIntoView({behavior:'smooth',block:'start'});
 }
 </script>
 </body>
